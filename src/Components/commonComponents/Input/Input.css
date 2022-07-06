@@ -1,0 +1,6 @@
+.Input__money {
+    display: flex;
+    align-items: center;
+justify-content: center;
+    height: 75px;
+}
