@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 body {
+  font-family: Poppins, sans-serif;
+  margin: 0;
+  padding: 0;
   background-color: rgba(0,0,0, 0.3);
   display: flex;
   align-items: center;
@@ -7,7 +12,26 @@ body {
   #root {
     width: 100%
   }
-  .App {
-    margin-top: 12.5%;
+  .to__page{
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 20px;
+    color: rgba(255,255,255, 0.8);
+    transition: all 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+    &:hover {
+      color: rgba(255,255,255, 1);
+    }
+    &.active {
+      color: rgba(255,255,255, 1);
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .to__page:hover::before{
+    left: 0;
+    right: auto;
+    width: 100%;
   }
 }

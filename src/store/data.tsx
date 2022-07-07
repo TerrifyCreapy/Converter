@@ -1,11 +1,5 @@
-import {makeAutoObservable, toJS} from "mobx";
+import {action, makeAutoObservable, makeObservable, observable, toJS} from "mobx";
 import axios from "axios";
-
-interface IData {
-    ID:string
-    Name: string,
-    value: number
-}
 
 class data {
     state: number = 1;
@@ -17,16 +11,19 @@ class data {
 
 
     constructor() {
-        makeAutoObservable(this);
+        makeAutoObservable(this)
     }
 
     swapData() {
+        console.log(this.currentCurrency);
         [this.currentCurrency, this.needCurrency] = [this.needCurrency, this.currentCurrency];
+        console.log(this.currentCurrency);
         [this.haveMoney, this.needMoney] = [this.needMoney, this.haveMoney];
     }
 
     setCourse = async () => {
         const response = await axios.get('https://www.cbr-xml-daily.ru/daily_json.js');
+
         this.course = Object.values(response.data.Valute);
         this.course.push({ //centralbankapi doesn't have RUB in json.
             "ID": "R23723",
@@ -35,9 +32,21 @@ class data {
             "Nominal": 1,
             "Name": "Рубль Российской Федерации",
             "Value": 1,
-            "Previous": 1
+            "Previous": 1,
         });
     }
+
+    getFavourites(local: object) {
+        let array = Object.keys(local).sort();
+        let favourites = this.course.filter(e =>
+            array.indexOf(e.CharCode) !== -1
+        )
+        let notFavourites = this.course.filter(e => array.indexOf(e.CharCode)===-1);
+
+        return [...favourites, ...notFavourites];
+
+    }
+
     setStateCode(code: number) {
         this.state=code;
     }

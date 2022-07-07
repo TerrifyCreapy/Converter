@@ -18,9 +18,8 @@ const Input = observer( ({ sideCode}:Props) => {
         }
     }
     const updateData = sideCode===0?data.onChangeCurrentMoney.bind(data):data.onChangeNeedMoney.bind(data);
-    const valueData = sideCode===0?data.haveMoney:data.needMoney;
 
-    const [float, setFloat] = React.useState(sideCode===0?String(data.haveMoney):String(data.needMoney));
+    const [, setFloat] = React.useState(sideCode===0?String(data.haveMoney):String(data.needMoney));
     const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
         //If empty string
         if(isNaN(parseFloat(event.target.value))) {
