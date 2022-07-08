@@ -11,7 +11,7 @@ import ExchangeRate from "./Components/Content/ExchangeRate/ExchangeRate";
 
 const App = observer(() => {
     React.useEffect(()=> {
-        data.setCourse();
+        data.fetchCourse();
         data.setStateCode(2);
     }, []);
 

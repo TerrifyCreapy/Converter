@@ -19,10 +19,9 @@ class data {
         [this.haveMoney, this.needMoney] = [this.needMoney, this.haveMoney];
     }
 
-    setCourse = async () => {
-        const response = await axios.get('https://www.cbr-xml-daily.ru/daily_json.js');
-
-        this.course = Object.values(response.data.Valute);
+    setCourse(course: any[]): void
+    {
+        this.course = course;
         this.course.push({ //centralbankapi doesn't have RUB in json.
             "ID": "R23723",
             "NumCode": "8226",
@@ -32,6 +31,11 @@ class data {
             "Value": 1,
             "Previous": 1,
         });
+    }
+    fetchCourse = async () => {
+        const response = await axios.get('https://www.cbr-xml-daily.ru/daily_json.js');
+
+        this.setCourse(Object.values(response.data.Valute));
     }
 
     getFavourites(local: object): any[] {
