@@ -24,16 +24,16 @@ const ExchangeRate = observer(() => {
             <Table sx={{ minWidth: 650,maxWidth: 1140 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Rate</TableCell>
-                        <TableCell align="center">Nominal</TableCell>
-                        <TableCell align="center">Value (Rubbles)</TableCell>
-                        <TableCell align="center">Favourite</TableCell>
+                        <TableCell key={"Rate"}>Rate</TableCell>
+                        <TableCell key={"Nominal"} align="center">Nominal</TableCell>
+                        <TableCell key={"Value"} align="center">Value (Rubbles)</TableCell>
+                        <TableCell key={"Favourite"} align="center">Favourite</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {valutes.map((row) => (
                         <TableRow
-                            key={row.name}
+                            key={row.CharCode}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell key={row.CharCode + "a"} component="th" scope="row">
