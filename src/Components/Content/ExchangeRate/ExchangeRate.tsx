@@ -14,7 +14,6 @@ import {observer} from "mobx-react-lite";
 const ExchangeRate = observer(() => {
     let valutes = data.getFavourites(localStorage);
     const [changing, setChanging] = React.useState(false);
-    let array:any[] = data.getFavourites(localStorage);
     React.useEffect(()=> {
         setChanging(false)
     }, [changing]);
@@ -37,11 +36,11 @@ const ExchangeRate = observer(() => {
                             key={row.name}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell component="th" scope="row">
+                            <TableCell key={row.CharCode + "a"} component="th" scope="row">
                                 {row.CharCode} - {row.Name}
                             </TableCell>
-                            <TableCell align="center">{row.Nominal}</TableCell>
-                            <TableCell align="center">{row.Value}</TableCell>
+                            <TableCell key={row.CharCode + "b"} align="center">{row.Nominal}</TableCell>
+                            <TableCell key={row.CharCode + "c"} align="center">{row.Value}</TableCell>
                             <TableCell align="center"><StarIcon onClick={() => {
                                 if(localStorage.getItem(row.CharCode) === null)
                                     localStorage.setItem(row.CharCode, "1");

@@ -19,18 +19,15 @@ const Input = observer( ({ sideCode}:Props) => {
     }
     const updateData = sideCode===0?data.onChangeCurrentMoney.bind(data):data.onChangeNeedMoney.bind(data);
 
-    const [, setFloat] = React.useState(sideCode===0?String(data.haveMoney):String(data.needMoney));
     const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
         //If empty string
         if(isNaN(parseFloat(event.target.value))) {
             updateData(0);
-            setFloat("0");
             return update(sideCode);
         }
         if(event.target.value.length > 10) return event.stopPropagation();
 
         updateData(parseFloat(event.target.value));
-        setFloat(event.target.value.replace(/[^.\d]/g, ''));
         return update(sideCode);
 
 

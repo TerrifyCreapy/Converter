@@ -1,4 +1,4 @@
-import {action, makeAutoObservable, makeObservable, observable, toJS} from "mobx";
+import { makeAutoObservable,  toJS} from "mobx";
 import axios from "axios";
 
 class data {
@@ -14,10 +14,8 @@ class data {
         makeAutoObservable(this)
     }
 
-    swapData() {
-        console.log(this.currentCurrency);
+    swapData() : void {
         [this.currentCurrency, this.needCurrency] = [this.needCurrency, this.currentCurrency];
-        console.log(this.currentCurrency);
         [this.haveMoney, this.needMoney] = [this.needMoney, this.haveMoney];
     }
 
@@ -36,7 +34,7 @@ class data {
         });
     }
 
-    getFavourites(local: object) {
+    getFavourites(local: object): any[] {
         let array = Object.keys(local).sort();
         let favourites = this.course.filter(e =>
             array.indexOf(e.CharCode) !== -1
@@ -47,16 +45,16 @@ class data {
 
     }
 
-    setStateCode(code: number) {
+    setStateCode(code: number): void {
         this.state=code;
     }
-    getCourse() {
+    getCourse(): any[] {
         return this.course
     }
-    setCurrentCurrency(currency:string) {
+    setCurrentCurrency(currency:string):void {
         this.currentCurrency=currency;
     }
-    setNeedCurrency(currency: string){
+    setNeedCurrency(currency: string):void{
         this.needCurrency = currency;
     }
 
@@ -65,16 +63,16 @@ class data {
         if(current === 'RUB') return toJS(this.course).filter(e => e.CharCode===need)[0].Value;
         return toJS(this.course).filter(e => e.CharCode===need)[0].Value/toJS(this.course).filter(e => e.CharCode===current)[0].Value;
     }
-    calculateMoneyNeed() {
+    calculateMoneyNeed():void {
         this.onChangeNeedMoney(this.haveMoney * this.currentNum(this.needCurrency, this.currentCurrency))
     }
-    calculateMoneyHave() {
+    calculateMoneyHave():void {
         this.onChangeCurrentMoney(this.needMoney * this.currentNum(this.currentCurrency, this.needCurrency));
     }
-    onChangeCurrentMoney(fl: number) {
+    onChangeCurrentMoney(fl: number):void {
         this.haveMoney = parseFloat(Number.parseFloat(String(fl)).toFixed(4));
     }
-    onChangeNeedMoney(fl : number) {
+    onChangeNeedMoney(fl : number):void {
         this.needMoney = parseFloat(Number.parseFloat(String(fl)).toFixed(4))
 
     }

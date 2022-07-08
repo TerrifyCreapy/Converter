@@ -1,6 +1,5 @@
 import React from 'react';
 //@ts-ignore
-import logo from "../../Assets/logo.svg";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,8 +11,6 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 //@ts-ignore
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-//@ts-ignore
-import AdbIcon from '@mui/icons-material/Adb';
 import {NavLink} from "react-router-dom";
 
 const pages = ['Exchange rate'];

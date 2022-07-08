@@ -21,10 +21,9 @@ const CardVal = observer(({ defaultValue, currentMoney, needMoney, sideCode}:Pro
                         <Select
                             sx={{borderRadius: "20px 20px 3px 3px"}}
                             id="demo-simple-select"
-                            disableUnderline
-                            value={defaultValue}
+                            value={Valutes.length?defaultValue:""}
                         >
-                            {Valutes.map(e => <MenuItem disabled={e.CharCode===data.currentCurrency || e.CharCode===data.needCurrency ? true : false} onClick={() => sideCode===0?data.setCurrentCurrency(e.CharCode):data.setNeedCurrency(e.CharCode)} value={e.CharCode} key={e.CharCode}>{e.CharCode} - {e.Name}</MenuItem>)}
+                            {Valutes.map(e => <MenuItem disabled={e.CharCode===data.currentCurrency || e.CharCode===data.needCurrency} onClick={() => sideCode===0?data.setCurrentCurrency(e.CharCode):data.setNeedCurrency(e.CharCode)} value={e.CharCode} key={e.CharCode}>{e.CharCode} - {e.Name}</MenuItem>)}
                         </Select>
                     </FormControl>
                     <Input sideCode={sideCode}/>

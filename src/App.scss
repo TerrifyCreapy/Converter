@@ -27,11 +27,3 @@ body {
     }
   }
 }
-
-@media (hover: hover) and (pointer: fine) {
-  .to__page:hover::before{
-    left: 0;
-    right: auto;
-    width: 100%;
-  }
-}
