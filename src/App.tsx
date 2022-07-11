@@ -1,31 +1,30 @@
-import React from 'react';
-import data from "./store/data"
-import {observer} from "mobx-react-lite";
-import "./App.scss";
+import React from "react";
+import { observer } from "mobx-react-lite";
+import { ConverterP, ExchangeP, NotFoundP } from "./Routes/Routes";
+import "./styles/App.scss";
 import Header from "./Components/Header/Header";
-import Converter from "./Components/Content/Converter/Converter";
-import {Route, Routes} from "react-router";
-import ExchangeRate from "./Components/Content/ExchangeRate/ExchangeRate";
-import NotFound from "./Components/NotFound";
-
+import { Route, Routes } from "react-router";
+import useStore from "./hooks/useStore";
 
 
 const App = observer(() => {
-    React.useEffect(()=> {
+
+    const data = useStore();
+    React.useEffect(() => {
         data.fetchCourse().then(response => data.setStateCode(2));
     }, []);
 
-  return (
-    <div className="App">
-        <Header/>
-        <Routes>
-            <Route path={"/Exchange"} element={<ExchangeRate/>}/>
-            <Route path={"/"} element={<Converter/>}/>
-            <Route path={"*"} element={<NotFound/>}/>
-        </Routes>
+    return (
+        <div className="App">
+            <Header />
+            <Routes>
+                <Route path={ExchangeP.path} element={<ExchangeP.element />} />
+                <Route path={ConverterP.path} element={<ConverterP.element />} />
+                <Route path={NotFoundP.path} element={<NotFoundP.element />} />
+            </Routes>
 
-    </div>
-  );
+        </div>
+    );
 });
 
 export default App;

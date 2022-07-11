@@ -1,47 +1,39 @@
-import React, {ChangeEvent} from 'react';
-import {TextField} from "@mui/material";
-import "./Input.css"
-import data from "../../../store/data";
-import {observer} from "mobx-react-lite";
+import React, { ChangeEvent } from "react";
+import { TextField } from "@mui/material";
+import s from "../../../styles/Input.module.scss";
+import { observer } from "mobx-react-lite";
+
 
 interface Props {
     sideCode: number,
+    calculateMoney: any,
+    onChangeMoney: any,
+    haveMoney: number,
+    needMoney: number,
 }
 
-const Input = observer( ({ sideCode}:Props) => {
-    function update(sideCode: number) {
-        if(sideCode === 0) {
-            data.calculateMoneyNeed();
-        }
-        else {
-            data.calculateMoneyHave();
-        }
-    }
-    const updateData = sideCode===0?data.onChangeCurrentMoney.bind(data):data.onChangeNeedMoney.bind(data);
-
+const Input = observer(({ sideCode, calculateMoney, onChangeMoney, haveMoney, needMoney }: Props) => {
     const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
         //If empty string
-        if(isNaN(parseFloat(event.target.value))) {
-            updateData(0);
-            return update(sideCode);
+        if (isNaN(parseFloat(event.target.value))) {
+            onChangeMoney(0);
+            return calculateMoney();
         }
-        if(event.target.value.length > 10) return event.stopPropagation();
+        if (event.target.value.length > 10) return event.stopPropagation();
 
-        updateData(parseFloat(event.target.value));
-        return update(sideCode);
-
-
-    }
+        onChangeMoney(parseFloat(event.target.value));
+        return calculateMoney();
+    };
     return (
-        <div className="Input__money">
+        <div className={s.inputMoney}>
             <TextField
                 id="outlined-multiline-flexible"
-                value={sideCode===0?data.haveMoney:data.needMoney}
+                value={sideCode === 0 ? haveMoney : needMoney}
                 size={"medium"}
                 placeholder={"Insert value here..."}
-                sx={{width: "85%", margin: "0px auto", heigth: '75px', marginLeft: "15px"}}
+                sx={{ width: "85%", margin: "0px auto", heigth: "75px", marginLeft: "15px" }}
                 variant="standard"
-                InputProps={{disableUnderline: true, style: {fontSize: 24, fontWeight: "bold"}}}
+                InputProps={{ disableUnderline: true, style: { fontSize: 24, fontWeight: "bold" } }}
                 onChange={handleInput}
             />
         </div>
