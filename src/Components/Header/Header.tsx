@@ -82,7 +82,7 @@ const Header = () => {
                         ))}
                     </Box>
                     <Box sx={{display: "flex", alignItems: "center"}}>
-                        <a href={"https://www.cbr.ru/currency_base/daily/"} target={"_blank"} style={{display: "flex", alignItems: "center"}}>
+                        <a href={"https://www.cbr.ru/currency_base/daily/"} rel="noreferrer" target={"_blank"} style={{display: "flex", alignItems: "center"}}>
                             <QRCode value={"https://www.cbr.ru/currency_base/daily/"} size={64}/>
                         </a>
                     </Box>
