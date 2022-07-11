@@ -8,7 +8,7 @@ import {observer} from "mobx-react-lite";
 
 const Converter = observer(() => {
     return (
-        <Container sx={{display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", marginTop: "12.5%"}} maxWidth="md">
+        <Container sx={{display: "flex", flexDirection: {xs: "column",sm: "column", md: "column", lg: "row"}, alignItems: "center", justifyContent: "space-between", width: "100%", marginTop: "10.5%"}} maxWidth="md">
             <CardVal
                 defaultValue={data.currentCurrency}
                 currentMoney={data.currentCurrency}

@@ -3,6 +3,7 @@ import axios from "axios";
 
 class data {
     state: number = 1;
+    date: string = "";
     course:any[] = []
     currentCurrency:string = 'RUB';
     needCurrency:string = 'USD';
@@ -19,7 +20,7 @@ class data {
         [this.haveMoney, this.needMoney] = [this.needMoney, this.haveMoney];
     }
 
-    setCourse(course: any[]): void
+    setCourse(course: any[], date: string): void
     {
         this.course = course;
         this.course.push({ //centralbankapi doesn't have RUB in json.
@@ -31,11 +32,13 @@ class data {
             "Value": 1,
             "Previous": 1,
         });
+        this.date = date.split("T")[0];
+
     }
     fetchCourse = async () => {
         const response = await axios.get('https://www.cbr-xml-daily.ru/daily_json.js');
 
-        this.setCourse(Object.values(response.data.Valute));
+        this.setCourse(Object.values(response.data.Valute), response.data.Date);
     }
 
     getFavourites(local: object): any[] {

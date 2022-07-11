@@ -4,6 +4,7 @@ import {FormControl, Select, MenuItem, Typography} from "@mui/material";
 import Input from "../Input/Input";
 import data from "../../../store/data";
 import {observer} from "mobx-react-lite";
+
 interface Props {
     defaultValue: string,
     currentMoney: string,
@@ -27,7 +28,7 @@ const CardVal = observer(({ defaultValue, currentMoney, needMoney, sideCode}:Pro
                         </Select>
                     </FormControl>
                     <Input sideCode={sideCode}/>
-                    <Typography sx={{position: "relative", top: "180px", left: "12px", fontSize: 18}} variant="h2" gutterBottom component="div">
+                    <Typography sx={{position: "relative", top: "180px", left: "12px", fontSize: {xs: 10,sm: 14, md: 18}}} variant="h2" gutterBottom component="div">
                         1 {currentMoney} = {data.currentNum(needMoney, currentMoney).toFixed(4)} {needMoney}
                     </Typography>
                 </Card>
