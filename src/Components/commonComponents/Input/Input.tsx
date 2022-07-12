@@ -1,7 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { TextField } from "@mui/material";
 import s from "../../../styles/Input.module.scss";
-import { observer } from "mobx-react-lite";
 
 
 interface IProps {

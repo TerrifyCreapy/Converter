@@ -30,6 +30,10 @@ const RowTable: React.FC<IProps> = ({ CharCode, Name, Nominal, Value, setChangin
             <TableCell sx={{ fontSize: { xs: 10, sm: 14, md: 18 } }} align="center">
                 <StarIcon
                     onClick={() => {
+                        const favourites: string | null = localStorage.getItem("favourites");
+                        if((favourites || "").indexOf(CharCode) ===-1) localStorage.setItem("favourites", favourites + CharCode + ",");
+                        else localStorage.setItem("favourites", (favourites||"").replace(CharCode + ",", ""));
+
                         if (localStorage.getItem(CharCode) === null)
                             localStorage.setItem(CharCode, "1");
                         else
