@@ -8,3 +8,4 @@ export const RubbleState = { //centralbankapi doesn't have RUB in json.
     "Value": 1,
     "Previous": 1,
 };
+export const IPAPI_token = "5a4abf5ccec6a7";

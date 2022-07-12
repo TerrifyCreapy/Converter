@@ -20,9 +20,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "experimentalDecorators": true,
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "removeComments": true
   },
   "include": [
-    "src"
+    "src",
+    "scripts"
   ]
 }

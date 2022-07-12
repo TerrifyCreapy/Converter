@@ -4,10 +4,14 @@ import "./styles/App.scss";
 import Header from "./Components/Header/Header";
 import { Route, Routes } from "react-router";
 import useStore from "./hooks/useStore";
+import axios from "axios";
+import { LocationAPI } from "./API/api";
+
 
 
 const App = () => {
     const data = useStore();
+
     React.useEffect(() => {
         data.fetchCourse();
     }, [data]);

@@ -1,12 +1,13 @@
 import { action, makeObservable, observable } from "mobx";
-import { RateAPI } from "../API/api";
+import { RateAPI, LocationAPI } from "../API/api";
 import { RubbleState } from "../consts/consts";
 
 
 class Store {
     @observable course: any[] = [];
-    @observable currentCurrency: string = "RUB";
-    @observable needCurrency: string = "USD";
+    @observable currentLocationCode: string = "";
+    @observable currentCurrency: string = "";
+    @observable needCurrency: string = "";
     @observable haveMoney: number = 0;
     @observable needMoney: number = 0;
 
@@ -28,11 +29,48 @@ class Store {
 
     }
 
+    setCurrentLocation(location: string): void {
+        this.currentLocationCode = location;
+    }
+
+    setDefaultRate(location: string):void {
+        if(location==="RU") {
+            this.currentCurrency = "RUB";
+            this.needCurrency = "USD";
+        }
+        else if(location==="US") {
+            this.currentCurrency = "USD";
+            this.needCurrency = "RUB";
+        }
+        else {
+            const match = this.course.filter(e => e.includes(location));
+            if(!match.length) {
+                this.currentCurrency = "RUB"; this.needCurrency = "USD";
+            }
+            else {
+                this.currentCurrency = match[0]; this.needCurrency = "USD";
+            }
+        }
+    }
+
     @action
     fetchCourse = () => {
         RateAPI.getRate().then(response => {
             this.setCourse(Object.values(response.data.Valute), response.data.Date);
         });
+        if(localStorage.location !== undefined) {
+            this.setCurrentLocation(localStorage.location);
+            this.setDefaultRate(localStorage.location);
+        }
+        else {
+            LocationAPI.getLocation().then(response => {
+                if(response.status === 200) {
+                    this.setCurrentLocation(response.data.country);
+                    localStorage.setItem("location", response.data.country);
+                    this.setDefaultRate(localStorage.location);
+                }
+            })
+        }
     };
 
     @action
