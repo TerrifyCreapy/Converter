@@ -1,22 +1,22 @@
-import ExchangeRate from "../pages/ExchangeRate";
+import ExchangeRatePage from "../pages/ExchangeRatePage";
 import ConvertPage from "../pages/ConvertPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 
-export const ConverterP = {
+export const ConverterPage = {
     name: "Converter page",
     path: "/",
-    element: ConvertPage,
+    Element: ConvertPage,
 };
 
-export const ExchangeP = {
+export const ExchangePage = {
     name: "Exchange page",
     path: "/Exchange",
-    element: ExchangeRate,
+    Element: ExchangeRatePage,
 };
 
-export const NotFoundP = {
+export const ErrorNotFoundPage = {
     name: "Not found page",
     path: "*",
-    element: NotFoundPage,
+    Element: NotFoundPage,
 };

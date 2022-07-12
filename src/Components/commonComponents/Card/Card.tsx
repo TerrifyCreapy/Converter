@@ -4,39 +4,36 @@ import { FormControl, Select, MenuItem, Typography } from "@mui/material";
 import Input from "../Input/Input";
 import { observer } from "mobx-react-lite";
 
-type getCoursefn = () => any[];
-
 interface IProps {
     defaultValue: string,
     currentMoney: string,
     needMoney: string,
     sideCode: number,
-    getCourse: getCoursefn,
-    setCurrentCurrency: any,
-    setNeedCurrency: any,
-    currentNum: any,
-    calculateMoney: any,
-    onChangeMoney: any,
+    getCourse: () => any[],
+    setCurrentCurrency: (currency: string) => void,
+    setNeedCurrency: (currency: string) => void,
+    currentNum: (current: string, need: string) => number,
+    calculateMoney: () => void,
+    onChangeMoney: () => void,
     needMoneyN: number,
     haveMoneyN: number
 }
 
-const CardVal = observer(({
-                              defaultValue,
-                              currentMoney,
-                              needMoney,
-                              sideCode,
-                              getCourse,
-                              setCurrentCurrency,
-                              setNeedCurrency,
-                              currentNum,
-                              calculateMoney,
-                              onChangeMoney,
-                              haveMoneyN,
-                              needMoneyN,
-                          }: IProps) => {
+const CardVal: React.FC<IProps> = observer(({
+                                                defaultValue,
+                                                currentMoney,
+                                                needMoney,
+                                                sideCode,
+                                                getCourse,
+                                                setCurrentCurrency,
+                                                setNeedCurrency,
+                                                currentNum,
+                                                calculateMoney,
+                                                onChangeMoney,
+                                                haveMoneyN,
+                                                needMoneyN,
+                                            }) => {
     const Valutes = getCourse();
-
     return (
         <>
             <Card sx={{ height: 350, width: 1 / 3, borderRadius: "20px", position: "relative" }} variant="outlined">

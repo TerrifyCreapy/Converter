@@ -1,30 +1,29 @@
 import React from "react";
-import { observer } from "mobx-react-lite";
-import { ConverterP, ExchangeP, NotFoundP } from "./Routes/Routes";
+import { ConverterPage, ExchangePage, ErrorNotFoundPage } from "./Routes/Routes";
 import "./styles/App.scss";
 import Header from "./Components/Header/Header";
 import { Route, Routes } from "react-router";
 import useStore from "./hooks/useStore";
 
 
-const App = observer(() => {
+const App = () => {
 
     const data = useStore();
     React.useEffect(() => {
-        data.fetchCourse().then(response => data.setStateCode(2));
-    }, []);
+        data.fetchCourse();
+    }, [data]);
 
     return (
         <div className="App">
             <Header />
             <Routes>
-                <Route path={ExchangeP.path} element={<ExchangeP.element />} />
-                <Route path={ConverterP.path} element={<ConverterP.element />} />
-                <Route path={NotFoundP.path} element={<NotFoundP.element />} />
+                <Route path={ExchangePage.path} element={<ExchangePage.Element />} />
+                <Route path={ConverterPage.path} element={<ConverterPage.Element />} />
+                <Route path={ErrorNotFoundPage.path} element={<ErrorNotFoundPage.Element />} />
             </Routes>
 
         </div>
     );
-});
+};
 
 export default App;

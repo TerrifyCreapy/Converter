@@ -9,13 +9,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import { NavLink } from "react-router-dom";
 import QRCode from "react-qr-code";
+import { dailyRate } from "../../consts/consts";
 
 const pages = ["Exchange rate"];
 
 
 const Header = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
@@ -84,9 +84,9 @@ const Header = () => {
                         ))}
                     </Box>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <a href={"https://www.cbr.ru/currency_base/daily/"} rel="noreferrer" target={"_blank"}
+                        <a href={dailyRate} rel="noreferrer" target={"_blank"}
                            style={{ display: "flex", alignItems: "center" }}>
-                            <QRCode value={"https://www.cbr.ru/currency_base/daily/"} size={64} />
+                            <QRCode value={dailyRate} size={64} />
                         </a>
                     </Box>
                 </Toolbar>

@@ -4,7 +4,7 @@ import s from "../../../styles/Input.module.scss";
 import { observer } from "mobx-react-lite";
 
 
-interface Props {
+interface IProps {
     sideCode: number,
     calculateMoney: any,
     onChangeMoney: any,
@@ -12,7 +12,7 @@ interface Props {
     needMoney: number,
 }
 
-const Input = observer(({ sideCode, calculateMoney, onChangeMoney, haveMoney, needMoney }: Props) => {
+const Input: React.FC<IProps> = observer(({ sideCode, calculateMoney, onChangeMoney, haveMoney, needMoney }) => {
     const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
         //If empty string
         if (isNaN(parseFloat(event.target.value))) {

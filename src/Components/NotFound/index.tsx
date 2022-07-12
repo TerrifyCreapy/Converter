@@ -15,7 +15,7 @@ const NotFound = () => {
             marginTop: "12.5%",
         }}>
             <Typography variant="h4" component="h4">
-                Error 404. <br /> Can not found this page :(
+                Error 404. <br /> Can not found page :(
             </Typography>
             <Button variant="outlined" sx={{ display: "flex", alignItems: "center", marginTop: "10px" }}
                     onClick={() => navigate("/")}>Back to the home page</Button>

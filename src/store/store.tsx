@@ -1,10 +1,9 @@
 import { makeAutoObservable } from "mobx";
-import axios from "axios";
-import { ValutesAPI } from "../API/api";
+import { RateAPI } from "../API/api";
+import { RubbleState } from "../consts/consts";
 
 
 class Store {
-    state: number = 1;
     course: any[] = [];
     currentCurrency: string = "RUB";
     needCurrency: string = "USD";
@@ -19,27 +18,18 @@ class Store {
     swapData(): void {
         [this.currentCurrency, this.needCurrency] = [this.needCurrency, this.currentCurrency];
         [this.haveMoney, this.needMoney] = [this.needMoney, this.haveMoney];
-        console.log("swap");
     }
 
     setCourse(course: any[], date: string): void {
         this.course = course;
-        this.course.push({ //centralbankapi doesn't have RUB in json.
-            "ID": "R23723",
-            "NumCode": "8226",
-            "CharCode": "RUB",
-            "Nominal": 1,
-            "Name": "Рубль Российской Федерации",
-            "Value": 1,
-            "Previous": 1,
-        });
+        this.course.push(RubbleState);
 
     }
 
-    fetchCourse = async () => {
-        const response = await axios.get(ValutesAPI);
-
-        this.setCourse(Object.values(response.data.Valute), response.data.Date);
+    fetchCourse = () => {
+        RateAPI.getRate().then(response => {
+            this.setCourse(Object.values(response.data.Valute), response.data.Date);
+        });
     };
 
     getFavourites(local: object): any[] {
@@ -52,10 +42,6 @@ class Store {
 
         return [...favourites, ...notFavourites];
 
-    }
-
-    setStateCode(code: number): void {
-        this.state = code;
     }
 
     getCourse(): any[] {
@@ -85,9 +71,7 @@ class Store {
     }
 
     onChangeCurrentMoney(fl: number): void {
-        console.log("111");
         this.haveMoney = parseFloat(Number.parseFloat(String(fl)).toFixed(4));
-        console.log(this.haveMoney);
     }
 
     onChangeNeedMoney(fl: number): void {

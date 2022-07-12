@@ -20,7 +20,7 @@ interface IProps {
     onChangeMoneyNeed: any
 }
 
-const Converter = observer(({
+const Converter: React.FC<IProps> = observer(({
                                 onChangeMoneyNeed,
                                 onChangeMoneyHave,
                                 currentCurrency,
