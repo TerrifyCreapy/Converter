@@ -1,24 +1,13 @@
 import React from "react";
 import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
-import RowTable from "../../commonComponents/TableRow/RowTable";
 import TableHeader from "../../commonComponents/TableHeader/TableHeader";
-
-
-interface valute {
-    ID: string,
-    NumCode: string,
-    CharCode: string,
-    Nominal: number,
-    Name: string,
-    Value: number,
-    Previous: number
-}
+import { Rate } from "../../../interfaces/common/IRates";
+import TableBodyComponent from "../../commonComponents/TableBody/TableBody";
 
 interface IProps {
-    valutes: valute[],
+    valutes: Rate[],
     setChanging: any,
     changing: boolean
 }
@@ -41,11 +30,7 @@ const ExchangeRate: React.FC<IProps> = ({ valutes, setChanging, changing }) => {
             }}>
                 <Table sx={{ minWidth: 350, maxWidth: 1140 }} aria-label="simple table">
                     <TableHeader/>
-                    <TableBody>
-                        {valutes.map((row) => (
-                            <RowTable key={row.CharCode} {...row} setChanging={() => setChanging(true)}/>
-                        ))}
-                    </TableBody>
+                    <TableBodyComponent valutes={valutes} setChanging={setChanging}/>
                 </Table>
             </TableContainer>
         </div>

@@ -2,7 +2,6 @@ import React from "react";
 import Card from "@mui/material/Card";
 import { FormControl, Select, MenuItem, Typography } from "@mui/material";
 import Input from "../Input/Input";
-import { observer } from "mobx-react-lite";
 
 interface IProps {
     defaultValue: string,
@@ -19,20 +18,20 @@ interface IProps {
     haveMoneyN: number
 }
 
-const CardVal: React.FC<IProps> = observer(({
-                                                defaultValue,
-                                                currentMoney,
-                                                needMoney,
-                                                sideCode,
-                                                getCourse,
-                                                setCurrentCurrency,
-                                                setNeedCurrency,
-                                                currentNum,
-                                                calculateMoney,
-                                                onChangeMoney,
-                                                haveMoneyN,
-                                                needMoneyN,
-                                            }) => {
+const CardVal: React.FC<IProps> = ({
+                                       defaultValue,
+                                       currentMoney,
+                                       needMoney,
+                                       sideCode,
+                                       getCourse,
+                                       setCurrentCurrency,
+                                       setNeedCurrency,
+                                       currentNum,
+                                       calculateMoney,
+                                       onChangeMoney,
+                                       haveMoneyN,
+                                       needMoneyN,
+                                   }) => {
     const Valutes = getCourse();
     return (
         <>
@@ -64,6 +63,6 @@ const CardVal: React.FC<IProps> = observer(({
             </Card>
         </>
     );
-});
+};
 
 export default CardVal;

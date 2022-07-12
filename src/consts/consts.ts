@@ -7,4 +7,4 @@ export const RubbleState = { //centralbankapi doesn't have RUB in json.
     "Name": "Рубль Российской Федерации",
     "Value": 1,
     "Previous": 1,
-}
+};

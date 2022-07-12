@@ -2,7 +2,6 @@ import React from "react";
 import CardVal from "../../commonComponents/Card/Card";
 import transform from "../../../Assets/transfer.png";
 import { Container } from "@mui/material";
-import { observer } from "mobx-react-lite";
 
 interface IProps {
     currentCurrency: string,
@@ -20,7 +19,7 @@ interface IProps {
     onChangeMoneyNeed: any
 }
 
-const Converter: React.FC<IProps> = observer(({
+const Converter: React.FC<IProps> = ({
                                 onChangeMoneyNeed,
                                 onChangeMoneyHave,
                                 currentCurrency,
@@ -76,6 +75,6 @@ const Converter: React.FC<IProps> = observer(({
             />
         </Container>
     );
-});
+};
 
 export default Converter;

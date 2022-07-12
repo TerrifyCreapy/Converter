@@ -12,7 +12,7 @@ interface IProps {
     needMoney: number,
 }
 
-const Input: React.FC<IProps> = observer(({ sideCode, calculateMoney, onChangeMoney, haveMoney, needMoney }) => {
+const Input: React.FC<IProps> = ({ sideCode, calculateMoney, onChangeMoney, haveMoney, needMoney }) => {
     const handleInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
         //If empty string
         if (isNaN(parseFloat(event.target.value))) {
@@ -38,6 +38,6 @@ const Input: React.FC<IProps> = observer(({ sideCode, calculateMoney, onChangeMo
             />
         </div>
     );
-});
+};
 
 export default Input;
