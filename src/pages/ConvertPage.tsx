@@ -2,11 +2,13 @@ import React from "react";
 import Converter from "../Components/Content/Converter/Converter";
 import useStore from "../hooks/useStore";
 import { observer } from "mobx-react-lite";
+import Location from "../Components/Location";
 
 const ConvertPage = observer(() => {
     const data = useStore();
     return (
         <>
+            <Location location={data.currentLocationCode}/>
             <Converter
                 swapData={data.swapData.bind(data)}
                 currentCurrency={data.currentCurrency}

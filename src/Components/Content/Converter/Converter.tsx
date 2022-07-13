@@ -41,7 +41,7 @@ const Converter: React.FC<IProps> = ({
             alignItems: "center",
             justifyContent: "space-between",
             width: "100%",
-            marginTop: "10.5%",
+            marginTop: {xs: "14.5%", sm: "13.5%", md: "10.5%"},
         }} maxWidth="md">
             <CardVal
                 defaultValue={currentCurrency}

@@ -5,7 +5,7 @@ import { RubbleState } from "../consts/consts";
 
 class Store {
     @observable course: any[] = [];
-    @observable currentLocationCode: string = "";
+    @observable currentLocationCode: string = "unknown";
     @observable currentCurrency: string = "";
     @observable needCurrency: string = "";
     @observable haveMoney: number = 0;
@@ -30,11 +30,11 @@ class Store {
     }
 
     setCurrentLocation(location: string): void {
-        this.currentLocationCode = location;
+        this.currentLocationCode = location?location:"unknown";
     }
 
     setDefaultRate(location: string):void {
-        if(location==="RU") {
+        if(location==="RU" || location==="US") {
             this.currentCurrency = "RUB";
             this.needCurrency = "USD";
         }
@@ -69,13 +69,16 @@ class Store {
                     localStorage.setItem("location", response.data.country);
                     this.setDefaultRate(localStorage.location);
                 }
+                else {
+                    this.setCurrentLocation("unknown");
+                    this.setDefaultRate("");
+                }
             })
         }
     };
 
     @action
     getFavourites(local: any): any[] {
-        console.log(local.favourites.split(","), 123);
         let arr = local.favourites.split(",");
         let favour = this.course.filter(e => {
             return arr.indexOf(e.CharCode) !== -1;
