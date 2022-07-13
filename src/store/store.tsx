@@ -74,15 +74,16 @@ class Store {
     };
 
     @action
-    getFavourites(local: object): any[] {
-        let array = Object.keys(local).sort();
-        let favourites = this.course.filter(e => {
-                return array.indexOf(e.CharCode) !== -1;
-            },
-        );
-        let notFavourites = this.course.filter(e => array.indexOf(e.CharCode) === -1).sort();
+    getFavourites(local: any): any[] {
+        console.log(local.favourites.split(","), 123);
+        let arr = local.favourites.split(",");
+        let favour = this.course.filter(e => {
+            return arr.indexOf(e.CharCode) !== -1;
+        }).sort();
 
-        return [...favourites, ...notFavourites];
+        let notFavour = this.course.filter(e => arr.indexOf(e.CharCode)===-1).sort();
+
+        return [...favour, ...notFavour];
 
     }
 

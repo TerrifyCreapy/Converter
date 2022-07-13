@@ -10,8 +10,6 @@ import useStore from "./hooks/useStore";
 const App = () => {
     const data = useStore();
 
-    localStorage.setItem("favourites", "");
-
     React.useEffect(() => {
         data.fetchCourse();
     }, [data]);
