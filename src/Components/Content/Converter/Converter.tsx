@@ -2,12 +2,12 @@ import React from "react";
 import CardVal from "../../commonComponents/Card/Card";
 import transform from "../../../Assets/transfer.png";
 import { Container } from "@mui/material";
+import { Rate } from "../../../interfaces/common/IRates";
 
 interface IProps {
     currentCurrency: string,
     needCurrency: string,
     swapData: any,
-    getCourse: any,
     setCurrentCurrency: any,
     setNeedCurrency: any,
     currentNum: any,
@@ -16,24 +16,25 @@ interface IProps {
     haveMoney: number,
     needMoney: number,
     onChangeMoneyHave: any,
-    onChangeMoneyNeed: any
+    onChangeMoneyNeed: any,
+    valutes: Rate[]
 }
 
 const Converter: React.FC<IProps> = ({
-                                onChangeMoneyNeed,
-                                onChangeMoneyHave,
-                                currentCurrency,
-                                needCurrency,
-                                swapData,
-                                getCourse,
-                                setCurrentCurrency,
-                                setNeedCurrency,
-                                currentNum,
-                                calculateMoneyNeed,
-                                calculateMoneyHave,
-                                haveMoney,
-                                needMoney,
-                            }: IProps) => {
+                                         onChangeMoneyNeed,
+                                         onChangeMoneyHave,
+                                         currentCurrency,
+                                         needCurrency,
+                                         swapData,
+                                         setCurrentCurrency,
+                                         setNeedCurrency,
+                                         currentNum,
+                                         calculateMoneyNeed,
+                                         calculateMoneyHave,
+                                         haveMoney,
+                                         needMoney,
+                                         valutes,
+                                     }) => {
     return (
         <Container sx={{
             display: "flex",
@@ -41,14 +42,13 @@ const Converter: React.FC<IProps> = ({
             alignItems: "center",
             justifyContent: "space-between",
             width: "100%",
-            marginTop: {xs: "14.5%", sm: "13.5%", md: "10.5%"},
+            marginTop: { xs: "14.5%", sm: "13.5%", md: "10.5%" },
         }} maxWidth="md">
             <CardVal
                 defaultValue={currentCurrency}
                 currentMoney={currentCurrency}
                 needMoney={needCurrency}
                 sideCode={0}
-                getCourse={getCourse}
                 setCurrentCurrency={setCurrentCurrency}
                 setNeedCurrency={setNeedCurrency}
                 currentNum={currentNum}
@@ -56,6 +56,7 @@ const Converter: React.FC<IProps> = ({
                 haveMoneyN={haveMoney}
                 needMoneyN={needMoney}
                 onChangeMoney={onChangeMoneyHave}
+                valutes={valutes}
             />
             <img onClick={() => swapData()} style={{ width: "64px", height: "64px", cursor: "pointer" }} src={transform}
                  alt="points" />
@@ -64,7 +65,6 @@ const Converter: React.FC<IProps> = ({
                 currentMoney={needCurrency}
                 needMoney={currentCurrency}
                 sideCode={1}
-                getCourse={getCourse}
                 setCurrentCurrency={setCurrentCurrency}
                 setNeedCurrency={setNeedCurrency}
                 currentNum={currentNum}
@@ -72,6 +72,7 @@ const Converter: React.FC<IProps> = ({
                 haveMoneyN={haveMoney}
                 needMoneyN={needMoney}
                 onChangeMoney={onChangeMoneyNeed}
+                valutes={valutes}
             />
         </Container>
     );

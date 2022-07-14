@@ -23,16 +23,16 @@ class Store {
     }
 
     @action
-    setCourse(course: any[], date: string): void {
+    setCourse(course: any[]): void {
         this.course = course;
         this.course.push(RubbleState);
 
     }
-
+    @action
     setCurrentLocation(location: string): void {
         this.currentLocationCode = location?location:"unknown";
     }
-
+    @action
     setDefaultRate(location: string):void {
         if(location==="RU" || location==="US") {
             this.currentCurrency = "RUB";
@@ -56,7 +56,7 @@ class Store {
     @action
     fetchCourse = () => {
         RateAPI.getRate().then(response => {
-            this.setCourse(Object.values(response.data.Valute), response.data.Date);
+            this.setCourse(Object.values(response.data.Valute));
         });
         if(localStorage.location !== undefined) {
             this.setCurrentLocation(localStorage.location);
@@ -88,11 +88,6 @@ class Store {
 
         return [...favour, ...notFavour];
 
-    }
-
-    @action
-    getCourse(): any[] {
-        return this.course;
     }
 
     @action
