@@ -5,8 +5,6 @@ import Header from "./Components/Header/Header";
 import { Route, Routes } from "react-router";
 import useStore from "./hooks/useStore";
 
-
-
 const App = () => {
     const data = useStore();
 

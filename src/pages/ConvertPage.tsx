@@ -10,10 +10,10 @@ const ConvertPage = observer(() => {
         <>
             <Location location={data.currentLocationCode}/>
             <Converter
+                valutes={data.course}
                 swapData={data.swapData.bind(data)}
                 currentCurrency={data.currentCurrency}
                 needCurrency={data.needCurrency}
-                getCourse={data.getCourse.bind(data)}
                 setCurrentCurrency={data.setCurrentCurrency.bind(data)}
                 setNeedCurrency={data.setNeedCurrency.bind(data)}
                 currentNum={data.currentNum.bind(data)}
