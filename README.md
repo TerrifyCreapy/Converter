@@ -9,7 +9,8 @@
 
 It has two pages. 
 The first one is page to convert one currency to another one.
-![image](https://github.com/user-attachments/assets/013029ae-9c0c-4ac0-8782-98f9c4bc5631)
+![image](https://github.com/user-attachments/assets/428462f2-097d-47dc-a6cb-fd9ba3b6b561)
+
 
 The second one is page to display all nominaды and currencies. User can choose any favourite currency.
 
